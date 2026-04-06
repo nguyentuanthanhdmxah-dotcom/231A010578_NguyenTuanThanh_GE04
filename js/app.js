@@ -33,15 +33,10 @@ const movies = [
   }
 ];
 
-// DOM
 const movieList = document.getElementById("movieList");
 const genreList = document.getElementById("genreList");
 const searchInput = document.getElementById("searchInput");
-const modal = document.getElementById("modal");
-const modalBody = document.getElementById("modalBody");
-const toggleBtn = document.getElementById("toggleTheme");
 
-// Render movies
 function renderMovies(data) {
   movieList.innerHTML = "";
 
@@ -55,10 +50,9 @@ function renderMovies(data) {
     card.className = "movie-card";
 
     card.innerHTML = `
-      <img src="${movie.poster}" alt="${movie.title}">
+      <img src="${movie.poster}">
       <h4>${movie.title}</h4>
-      <p><b>Năm:</b> ${movie.year}</p>
-      <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
+      <p>${movie.year}</p>
     `;
 
     card.onclick = () => showModal(movie);
@@ -66,18 +60,18 @@ function renderMovies(data) {
   });
 }
 
-// Render genres
 function renderGenres() {
   const genres = [...new Set(movies.flatMap(m => m.genre))];
 
   genres.forEach(g => {
     const div = document.createElement("div");
-    div.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
+    div.innerHTML = `
+      <input type="checkbox" value="${g}"> ${g}
+    `;
     genreList.appendChild(div);
   });
 }
 
-// Filter movies
 function filterMovies() {
   const keyword = searchInput.value.toLowerCase();
 
@@ -86,14 +80,18 @@ function filterMovies() {
 
   const result = movies.filter(m => {
     const matchName = m.title.toLowerCase().includes(keyword);
-    const matchGenre = checked.length === 0 || checked.some(g => m.genre.includes(g));
+
+    const matchGenre =
+      checked.length === 0 ||
+      checked.some(g => m.genre.includes(g));
+
     return matchName && matchGenre;
   });
 
   renderMovies(result);
 }
 
-// Debounce function
+// debounce
 function debounce(fn, delay) {
   let timeout;
   return function () {
@@ -102,40 +100,43 @@ function debounce(fn, delay) {
   };
 }
 
-// Event listeners
 searchInput.addEventListener("input", debounce(filterMovies, 400));
 document.addEventListener("change", filterMovies);
 
-// Show modal with full movie info
+// modal
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modalBody");
+
 function showModal(movie) {
   modal.classList.remove("hidden");
 
   modalBody.innerHTML = `
-    <div class="modal-content">
-      <h2>${movie.title} (${movie.year})</h2>
-      <img src="${movie.poster}" width="250" style="display:block; margin-bottom: 15px;">
-      <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
-      <p><b>Mô tả:</b> ${movie.description}</p>
-      <p><b>Đạo diễn:</b> ${movie.director}</p>
-    </div>
+    <h2>${movie.title}</h2>
+    <img src="${movie.poster}" width="200">
+    <p>${movie.description}</p>
+    <p><b>Đạo diễn:</b> ${movie.director}</p>
   `;
 }
 
-// Close modal
 document.getElementById("closeModal").onclick = () => {
   modal.classList.add("hidden");
 };
 
-// Dark mode
+// dark mode
+const toggleBtn = document.getElementById("toggleTheme");
+
 toggleBtn.onclick = () => {
   document.body.classList.toggle("dark-mode");
-  localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark-mode") ? "dark" : "light"
+  );
 };
 
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
 
-// Initialize
+// init
 renderGenres();
 renderMovies(movies);
