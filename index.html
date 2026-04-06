@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Movie Discovery App</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Movie Discovery App - Bài 34</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
 <header>
   <h1>🎬 Movie App</h1>
-
   <nav>
     <a href="index.html">Home</a>
     <a href="231A010578_NguyenTuanThanh_bt34.html">Bài 34</a>
   </nav>
-
-  <button id="toggleTheme">🌙</button>
+  <button id="toggleTheme" aria-label="Chuyển đổi giao diện sáng/tối">🌙</button>
 </header>
 
 <div class="container">
-  
+
   <!-- SIDEBAR -->
   <aside>
     <h3>Tìm kiếm</h3>
-    <input type="text" id="searchInput" placeholder="Nhập tên phim...">
+    <input type="text" id="searchInput" placeholder="Nhập tên phim..." aria-label="Ô tìm kiếm phim" />
 
     <h3>Thể loại</h3>
-    <div id="genreList"></div>
+    <div id="genreList" role="group" aria-label="Danh sách thể loại phim"></div>
   </aside>
 
   <!-- MAIN -->
-  <main id="movieList"></main>
+  <main id="movieList" aria-live="polite"></main>
 
 </div>
 
 <!-- MODAL -->
-<div id="modal" class="modal hidden">
+<div id="modal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
   <div class="modal-content">
-    <span id="closeModal">&times;</span>
+    <span id="closeModal" aria-label="Đóng cửa sổ thông tin" role="button" tabindex="0">&times;</span>
     <div id="modalBody"></div>
   </div>
 </div>
 
 <script src="js/app.js"></script>
+
 </body>
 </html>
