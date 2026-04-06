@@ -47,7 +47,7 @@ const movies = [
   }
 ];
 
-// ELEMENT
+// ELEMENTS
 const movieList = document.getElementById("movieList");
 const genreList = document.getElementById("genreList");
 const searchInput = document.getElementById("searchInput");
@@ -74,7 +74,6 @@ function renderMovies(data) {
 // GENRES AUTO
 function renderGenres() {
   const genres = [...new Set(movies.flatMap(m => m.genre))];
-
   genres.forEach(g => {
     const label = document.createElement("label");
     label.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
@@ -114,11 +113,9 @@ const modalBody = document.getElementById("modalBody");
 
 function showModal(movie) {
   modal.classList.remove("hidden");
-  modal.setAttribute('aria-hidden', 'false');
-
   modalBody.innerHTML = `
-    <h2 id="modalTitle">${movie.title}</h2>
-    <img src="${movie.poster}" alt="Poster phim ${movie.title}">
+    <h2>${movie.title}</h2>
+    <img src="${movie.poster}" alt="Poster ${movie.title}">
     <p><strong>Mô tả:</strong> ${movie.description}</p>
     <p><strong>Đạo diễn:</strong> ${movie.director}</p>
     <p><strong>Diễn viên:</strong> ${movie.cast ? movie.cast.join(", ") : "Chưa cập nhật"}</p>
@@ -127,9 +124,7 @@ function showModal(movie) {
   `;
 }
 
-document.getElementById("closeModal").onclick = () => {
-  modal.classList.add("hidden");
-};
+document.getElementById("closeModal").onclick = () => modal.classList.add("hidden");
 
 // DARK MODE
 const toggleBtn = document.getElementById("toggleTheme");
