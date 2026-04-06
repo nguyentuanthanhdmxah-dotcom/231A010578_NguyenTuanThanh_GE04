@@ -1,13 +1,19 @@
 :root {
   --bg: #ffffff;
-  --text: #000;
+  --text: #000000;
   --card: #f4f4f4;
+  --header-bg: #444444;
+  --header-text: #ffffff;
+  --sidebar-bg: #dddddd;
 }
 
 body.dark {
   --bg: #1e1e1e;
-  --text: #fff;
+  --text: #ffffff;
   --card: #2c2c2c;
+  --header-bg: #222222;
+  --header-text: #ffffff;
+  --sidebar-bg: #333333;
 }
 
 body {
@@ -23,14 +29,26 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background: #444;
-  color: white;
+  background: var(--header-bg);
+  color: var(--header-text);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 nav a {
-  color: white;
+  color: var(--header-text);
   margin: 0 10px;
   text-decoration: none;
+  font-weight: bold;
+}
+
+#toggleTheme {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--header-text);
 }
 
 /* LAYOUT */
@@ -43,7 +61,7 @@ nav a {
 /* SIDEBAR */
 aside {
   padding: 20px;
-  background: #ddd;
+  background: var(--sidebar-bg);
 }
 
 aside input[type="text"] {
@@ -54,7 +72,7 @@ aside input[type="text"] {
   border: 1px solid #ccc;
 }
 
-/* MAIN GRID */
+/* MAIN CONTENT */
 main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -69,6 +87,10 @@ main {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .movie-card:hover {
@@ -83,6 +105,7 @@ main {
 
 .movie-card h4 {
   margin: 10px 0 5px 0;
+  font-size: 1.1rem;
 }
 
 .movie-card p {
@@ -101,6 +124,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 200;
 }
 
 .modal.hidden {
@@ -108,32 +132,52 @@ main {
 }
 
 .modal-content {
+  position: relative;
   background: var(--card);
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 10px;
   max-width: 500px;
   width: 90%;
   max-height: 90%;
   overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
 .modal-content img {
   display: block;
   margin: 0 auto 15px auto;
   border-radius: 10px;
+  max-width: 100%;
+  height: auto;
 }
 
-.modal-content span#closeModal {
+.modal-content h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.modal-content p {
+  margin: 5px 0;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+#closeModal {
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 15px;
   font-size: 1.5rem;
+  font-weight: bold;
   cursor: pointer;
+  color: var(--text);
 }
 
 /* RESPONSIVE */
 @media(max-width:768px){
   .container {
     grid-template-columns: 1fr;
+  }
+  aside {
+    margin-bottom: 20px;
   }
 }
