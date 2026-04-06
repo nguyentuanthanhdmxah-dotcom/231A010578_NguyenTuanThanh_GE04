@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <title>Movie Discovery App</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Mô tả nhanh modal project */
+    #projectModal .modal-content {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+    #projectModal #closeProjectModal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,6 +34,7 @@
   </nav>
 
   <button id="toggleTheme">🌙</button>
+  <button id="showProjectBtn">ℹ️ Mô tả dự án</button>
 </header>
 
 <div class="container">
@@ -34,7 +53,7 @@
 
 </div>
 
-<!-- MODAL -->
+<!-- MODAL CHI TIẾT PHIM -->
 <div id="modal" class="modal hidden">
   <div class="modal-content">
     <span id="closeModal">&times;</span>
@@ -42,6 +61,36 @@
   </div>
 </div>
 
+<!-- MODAL MÔ TẢ DỰ ÁN -->
+<div id="projectModal" class="modal hidden">
+  <div class="modal-content">
+    <span id="closeProjectModal">&times;</span>
+    <h2>Mô tả dự án - Movie Discovery App</h2>
+    <p>Đây là dự án “Movie Discovery App” được làm theo đề thi kết thúc học phần Lập trình Web.</p>
+    <ul>
+      <li>Bài 1: Giao diện sử dụng CSS Grid, thẻ phim có hover effect, hỗ trợ Light/Dark Mode.</li>
+      <li>Bài 2: Tương tác dữ liệu bằng JS, lọc phim theo thể loại + tìm kiếm, debounce tối ưu hiệu năng.</li>
+      <li>Bài 3: Modal hiển thị chi tiết phim, hiển thị poster, mô tả, đạo diễn, thể loại. Link tới bài tập 34.</li>
+      <li>Bài 4: Tối ưu hình ảnh và triển khai website trên Netlify/Vercel.</li>
+    </ul>
+  </div>
+</div>
+
 <script src="js/app.js"></script>
+<script>
+  // Phần modal dự án
+  const projectModal = document.getElementById("projectModal");
+  const showProjectBtn = document.getElementById("showProjectBtn");
+  const closeProjectModal = document.getElementById("closeProjectModal");
+
+  showProjectBtn.onclick = () => {
+    projectModal.classList.remove("hidden");
+  };
+
+  closeProjectModal.onclick = () => {
+    projectModal.classList.add("hidden");
+  };
+</script>
+
 </body>
 </html>
