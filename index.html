@@ -5,21 +5,45 @@
   <title>Movie Discovery App</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Mô tả nhanh modal project */
-    #projectModal .modal-content {
-      max-width: 600px;
+    /* Modal chung */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal .modal-content {
+      background-color: #fff;
       margin: 50px auto;
-      background: #fff;
       padding: 20px;
       border-radius: 10px;
+      max-width: 600px;
       position: relative;
     }
-    #projectModal #closeProjectModal {
+    .modal .modal-content img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .modal .modal-content span {
       position: absolute;
       top: 10px;
       right: 15px;
       font-size: 24px;
       cursor: pointer;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
+    body.dark-mode header, body.dark-mode .modal-content {
+      background-color: #1e1e1e;
+      color: #f5f5f5;
     }
   </style>
 </head>
@@ -54,7 +78,7 @@
 </div>
 
 <!-- MODAL CHI TIẾT PHIM -->
-<div id="modal" class="modal hidden">
+<div id="modal" class="modal">
   <div class="modal-content">
     <span id="closeModal">&times;</span>
     <div id="modalBody"></div>
@@ -62,34 +86,57 @@
 </div>
 
 <!-- MODAL MÔ TẢ DỰ ÁN -->
-<div id="projectModal" class="modal hidden">
+<div id="projectModal" class="modal">
   <div class="modal-content">
     <span id="closeProjectModal">&times;</span>
-    <h2>Mô tả dự án - Movie Discovery App</h2>
-    <p>Đây là dự án “Movie Discovery App” được làm theo đề thi kết thúc học phần Lập trình Web.</p>
-    <ul>
-      <li>Bài 1: Giao diện sử dụng CSS Grid, thẻ phim có hover effect, hỗ trợ Light/Dark Mode.</li>
-      <li>Bài 2: Tương tác dữ liệu bằng JS, lọc phim theo thể loại + tìm kiếm, debounce tối ưu hiệu năng.</li>
-      <li>Bài 3: Modal hiển thị chi tiết phim, hiển thị poster, mô tả, đạo diễn, thể loại. Link tới bài tập 34.</li>
-      <li>Bài 4: Tối ưu hình ảnh và triển khai website trên Netlify/Vercel.</li>
-    </ul>
+    <div id="projectBody"></div>
   </div>
 </div>
 
 <script src="js/app.js"></script>
 <script>
-  // Phần modal dự án
+  // Modal dự án
   const projectModal = document.getElementById("projectModal");
   const showProjectBtn = document.getElementById("showProjectBtn");
   const closeProjectModal = document.getElementById("closeProjectModal");
+  const projectBody = document.getElementById("projectBody");
 
   showProjectBtn.onclick = () => {
-    projectModal.classList.remove("hidden");
+    fetch("mota.html")
+      .then(response => response.text())
+      .then(data => {
+        projectBody.innerHTML = data;
+        projectModal.style.display = "block";
+      })
+      .catch(err => {
+        projectBody.innerHTML = "<p>Không thể tải nội dung dự án.</p>";
+        projectModal.style.display = "block";
+        console.error(err);
+      });
   };
 
   closeProjectModal.onclick = () => {
-    projectModal.classList.add("hidden");
+    projectModal.style.display = "none";
   };
+
+  // Modal phim
+  const modal = document.getElementById("modal");
+  const modalBody = document.getElementById("modalBody");
+  const closeModal = document.getElementById("closeModal");
+
+  closeModal.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  // Dark mode
+  const toggleBtn = document.getElementById("toggleTheme");
+  toggleBtn.onclick = () => {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+  };
+  if(localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+  }
 </script>
 
 </body>
