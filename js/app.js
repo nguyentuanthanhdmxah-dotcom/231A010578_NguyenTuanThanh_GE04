@@ -1,11 +1,11 @@
-// Dữ liệu phim
+// DATA
 const movies = [
   {
     title: "Titanic",
     year: 1997,
     genre: ["Romance", "Drama"],
     poster: "images/titanic.jpg",
-    description: "Phim tình cảm nổi tiếng kể về câu chuyện tình yêu trên con tàu Titanic.",
+    description: "Phim tình cảm nổi tiếng về con tàu Titanic",
     director: "James Cameron",
     cast: ["Leonardo DiCaprio", "Kate Winslet"]
   },
@@ -14,7 +14,7 @@ const movies = [
     year: 2012,
     genre: ["Action", "Sci-Fi"],
     poster: "images/avengers.jpg",
-    description: "Siêu anh hùng Marvel hợp sức cứu thế giới khỏi kẻ thù hùng mạnh.",
+    description: "Siêu anh hùng Marvel hợp sức bảo vệ Trái Đất",
     director: "Joss Whedon",
     cast: ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"]
   },
@@ -23,125 +23,80 @@ const movies = [
     year: 2010,
     genre: ["Action", "Sci-Fi", "Thriller"],
     poster: "images/inception.jpg",
-    description: "Giấc mơ trong giấc mơ, hành trình chạm đến tiềm thức.",
+    description: "Một chuyên gia đánh cắp bí mật qua giấc mơ",
     director: "Christopher Nolan",
     cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt"]
   },
   {
     title: "Interstellar",
     year: 2014,
-    genre: ["Adventure", "Drama", "Sci-Fi"],
+    genre: ["Sci-Fi", "Drama"],
     poster: "images/interstellar.jpg",
-    description: "Cuộc hành trình vượt không gian và thời gian để cứu nhân loại.",
+    description: "Hành trình vượt không gian và thời gian để cứu Trái Đất",
     director: "Christopher Nolan",
     cast: ["Matthew McConaughey", "Anne Hathaway"]
-  },
-  {
-    title: "Joker",
-    year: 2019,
-    genre: ["Drama", "Crime", "Thriller"],
-    poster: "images/joker.jpg",
-    description: "Câu chuyện đen tối về nguồn gốc nhân vật Joker.",
-    director: "Todd Phillips",
-    cast: ["Joaquin Phoenix"]
-  },
-  {
-    title: "Spider-Man: No Way Home",
-    year: 2021,
-    genre: ["Action", "Adventure", "Sci-Fi"],
-    poster: "images/spiderman.jpg",
-    description: "Cuộc phiêu lưu mới của Người Nhện xuyên đa vũ trụ.",
-    director: "Jon Watts",
-    cast: ["Tom Holland", "Zendaya"]
   },
   {
     title: "The Dark Knight",
     year: 2008,
     genre: ["Action", "Crime", "Drama"],
     poster: "images/darkknight.jpg",
-    description: "Batman đối đầu với Joker trong cuộc chiến giành Gotham.",
+    description: "Batman đối mặt với Joker để bảo vệ Gotham",
     director: "Christopher Nolan",
     cast: ["Christian Bale", "Heath Ledger"]
-  },
-  {
-    title: "Avengers: Endgame",
-    year: 2019,
-    genre: ["Action", "Adventure", "Sci-Fi"],
-    poster: "images/endgame.jpg",
-    description: "Cuộc chiến cuối cùng của các siêu anh hùng Avengers.",
-    director: "Anthony Russo, Joe Russo",
-    cast: ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"]
-  },
-  {
-    title: "Jumanji: Welcome to the Jungle",
-    year: 2017,
-    genre: ["Adventure", "Comedy", "Fantasy"],
-    poster: "images/jumanji.jpg",
-    description: "Nhóm bạn bị cuốn vào trò chơi Jumanji đầy bí ẩn.",
-    director: "Jake Kasdan",
-    cast: ["Dwayne Johnson", "Kevin Hart"]
   }
 ];
 
-// ELEMENTS
+// ELEMENT
 const movieList = document.getElementById("movieList");
 const genreList = document.getElementById("genreList");
 const searchInput = document.getElementById("searchInput");
 
-// HIỂN THỊ PHIM
+// RENDER MOVIES
 function renderMovies(data) {
   movieList.innerHTML = "";
-
-  if(data.length === 0){
-    movieList.innerHTML = "<p>Không tìm thấy phim phù hợp.</p>";
-    return;
-  }
 
   data.forEach(movie => {
     const card = document.createElement("div");
     card.className = "movie-card";
 
     card.innerHTML = `
-      <img src="${movie.poster}" alt="Poster phim ${movie.title}">
+      <img src="${movie.poster}" alt="Poster ${movie.title}">
       <h4>${movie.title}</h4>
       <p>${movie.year}</p>
     `;
 
     card.onclick = () => showModal(movie);
-
     movieList.appendChild(card);
   });
 }
 
-// TỰ ĐỘNG LẤY THỂ LOẠI
+// GENRES AUTO
 function renderGenres() {
   const genres = [...new Set(movies.flatMap(m => m.genre))];
-  genreList.innerHTML = "";
 
   genres.forEach(g => {
     const label = document.createElement("label");
-    label.innerHTML = `
-      <input type="checkbox" value="${g}"> ${g}
-    `;
+    label.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
     genreList.appendChild(label);
   });
 }
 
-// LỌC VÀ TÌM KIẾM PHIM
+// FILTER + SEARCH
 function filterMovies() {
   const keyword = searchInput.value.toLowerCase();
-  const checkedGenres = [...document.querySelectorAll("#genreList input[type=checkbox]:checked")].map(cb => cb.value);
+  const checked = [...document.querySelectorAll("input[type=checkbox]:checked")].map(cb => cb.value);
 
-  const filtered = movies.filter(movie => {
-    const matchName = movie.title.toLowerCase().includes(keyword);
-    const matchGenre = checkedGenres.length === 0 || checkedGenres.some(g => movie.genre.includes(g));
+  const result = movies.filter(m => {
+    const matchName = m.title.toLowerCase().includes(keyword);
+    const matchGenre = checked.length === 0 || checked.some(g => m.genre.includes(g));
     return matchName && matchGenre;
   });
 
-  renderMovies(filtered);
+  renderMovies(result);
 }
 
-// DEBOUNCE (tránh gọi filter quá nhanh)
+// DEBOUNCE
 function debounce(fn, delay) {
   let timeout;
   return function () {
@@ -150,10 +105,12 @@ function debounce(fn, delay) {
   };
 }
 
+searchInput.addEventListener("input", debounce(filterMovies, 400));
+document.addEventListener("change", filterMovies);
+
 // MODAL
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
-const closeModalBtn = document.getElementById("closeModal");
 
 function showModal(movie) {
   modal.classList.remove("hidden");
@@ -170,41 +127,22 @@ function showModal(movie) {
   `;
 }
 
-// Đóng modal
-closeModalBtn.onclick = () => {
+document.getElementById("closeModal").onclick = () => {
   modal.classList.add("hidden");
-  modal.setAttribute('aria-hidden', 'true');
-};
-
-// Đóng modal khi click ra ngoài vùng nội dung
-modal.onclick = (e) => {
-  if (e.target === modal) {
-    modal.classList.add("hidden");
-    modal.setAttribute('aria-hidden', 'true');
-  }
 };
 
 // DARK MODE
 const toggleBtn = document.getElementById("toggleTheme");
-
 toggleBtn.onclick = () => {
   document.body.classList.toggle("dark");
   localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-  toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
 
-// LOAD THEME LƯU TRỮ
+// LOAD THEME
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
-  toggleBtn.textContent = "☀️";
-} else {
-  toggleBtn.textContent = "🌙";
 }
 
-// EVENT LISTENERS
-searchInput.addEventListener("input", debounce(filterMovies, 400));
-genreList.addEventListener("change", filterMovies);
-
-// KHỞI TẠO
+// INIT
 renderGenres();
 renderMovies(movies);
