@@ -107,7 +107,6 @@ function renderMovies(data) {
     `;
 
     card.onclick = () => showModal(movie);
-
     movieList.appendChild(card);
   });
 }
@@ -118,9 +117,7 @@ function renderGenres() {
 
   genres.forEach(g => {
     const div = document.createElement("div");
-    div.innerHTML = `
-      <input type="checkbox" value="${g}"> ${g}
-    `;
+    div.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
     genreList.appendChild(div);
   });
 }
@@ -128,7 +125,6 @@ function renderGenres() {
 // FILTER + SEARCH
 function filterMovies() {
   const keyword = searchInput.value.toLowerCase();
-
   const checked = [...document.querySelectorAll("#genreList input:checked")]
     .map(cb => cb.value);
 
@@ -162,7 +158,7 @@ function showModal(movie) {
 
   modalBody.innerHTML = `
     <h2>${movie.title}</h2>
-    <img src="${movie.poster}" width="200">
+    <img src="${movie.poster}" alt="${movie.title}">
     <p>${movie.description}</p>
     <p><b>Đạo diễn:</b> ${movie.director}</p>
     <p><b>Năm phát hành:</b> ${movie.year}</p>
