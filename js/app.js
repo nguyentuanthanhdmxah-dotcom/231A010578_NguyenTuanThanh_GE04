@@ -41,6 +41,11 @@ const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const toggleBtn = document.getElementById("toggleTheme");
 
+// Modal dự án
+const projectModal = document.getElementById("projectModal");
+const showProjectBtn = document.getElementById("showProjectBtn");
+const closeProjectModal = document.getElementById("closeProjectModal");
+
 // Render movie cards
 function renderMovies(data) {
   movieList.innerHTML = "";
@@ -76,7 +81,7 @@ function renderGenres() {
   });
 }
 
-// Filter movies by search + genre
+// Filter movies
 function filterMovies() {
   const keyword = searchInput.value.toLowerCase();
   const checked = [...document.querySelectorAll("#genreList input:checked")].map(cb => cb.value);
@@ -90,7 +95,7 @@ function filterMovies() {
   renderMovies(filtered);
 }
 
-// Debounce function
+// Debounce
 function debounce(fn, delay) {
   let timeout;
   return function () {
@@ -103,11 +108,12 @@ function debounce(fn, delay) {
 searchInput.addEventListener("input", debounce(filterMovies, 400));
 document.addEventListener("change", filterMovies);
 
-// Modal
+// Show movie modal
 function showModal(movie) {
   modal.classList.remove("hidden");
   modalBody.innerHTML = `
     <div class="modal-content">
+      <span id="closeModal">&times;</span>
       <h2>${movie.title} (${movie.year})</h2>
       <img src="${movie.poster}" width="250" style="display:block; margin-bottom:15px;">
       <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
@@ -115,20 +121,26 @@ function showModal(movie) {
       <p><b>Đạo diễn:</b> ${movie.director}</p>
     </div>
   `;
+
+  document.getElementById("closeModal").onclick = () => {
+    modal.classList.add("hidden");
+  };
 }
 
-document.getElementById("closeModal").onclick = () => {
-  modal.classList.add("hidden");
+// Show project modal
+showProjectBtn.onclick = () => {
+  projectModal.style.display = "block";
+};
+closeProjectModal.onclick = () => {
+  projectModal.style.display = "none";
 };
 
-// Dark/Light mode toggle
+// Dark/Light mode
 toggleBtn.onclick = () => {
   document.body.classList.toggle("dark-mode");
   localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
 };
-
-// Apply saved theme
-if (localStorage.getItem("theme") === "dark") {
+if(localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
 
