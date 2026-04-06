@@ -67,7 +67,9 @@ function renderMovies(data) {
       <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
     `;
 
+    // Click vào card sẽ hiện modal thông tin phim
     card.addEventListener("click", () => showMovieModal(movie));
+
     movieList.appendChild(card);
   });
 }
@@ -77,7 +79,7 @@ function renderGenres() {
   const genres = [...new Set(movies.flatMap(m => m.genre))];
   genres.forEach(g => {
     const div = document.createElement("div");
-    div.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
+    div.innerHTML = `<label><input type="checkbox" value="${g}"> ${g}</label>`;
     genreList.appendChild(div);
   });
 }
@@ -114,12 +116,21 @@ function showMovieModal(movie) {
     <p><b>Mô tả:</b> ${movie.description}</p>
     <p><b>Đạo diễn:</b> ${movie.director}</p>
   `;
+  modal.style.display = "block";  // hiển thị modal
   modal.classList.remove("hidden");
 }
 
 // Close movie modal
-closeModal.addEventListener("click", () => {
+function closeMovieModal() {
+  modal.style.display = "none";
   modal.classList.add("hidden");
+}
+
+closeModal.addEventListener("click", closeMovieModal);
+
+// Click ngoài modal để đóng
+window.addEventListener("click", (e) => {
+  if(e.target === modal) closeMovieModal();
 });
 
 // Show project modal
