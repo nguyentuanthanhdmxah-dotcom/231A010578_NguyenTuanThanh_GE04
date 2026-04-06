@@ -1,18 +1,18 @@
 :root {
-  --bg: #f5f5f5;
-  --text: #111;
-  --card: #ffffff;
+  --bg: #ffffff;
+  --text: #000;
+  --card: #f4f4f4;
 }
 
 body.dark-mode {
-  --bg: #121212;
-  --text: #ffffff;
-  --card: #1e1e1e;
+  --bg: #1e1e1e;
+  --text: #fff;
+  --card: #2c2c2c;
 }
 
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -22,8 +22,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  background: #222;
+  padding: 15px;
+  background: #444;
   color: white;
 }
 
@@ -37,6 +37,7 @@ nav a {
 .container {
   display: grid;
   grid-template-columns: 250px 1fr;
+  min-height: calc(100vh - 60px);
 }
 
 /* SIDEBAR */
@@ -45,7 +46,7 @@ aside {
   background: #ddd;
 }
 
-/* MAIN */
+/* MAIN GRID */
 main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -56,30 +57,21 @@ main {
 /* CARD */
 .movie-card {
   background: var(--card);
-  border-radius: 12px;
-  overflow: hidden;
+  padding: 10px;
+  border-radius: 10px;
   transition: 0.3s;
   cursor: pointer;
+  text-align: center;
 }
 
 .movie-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .movie-card img {
   width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-.movie-card h4 {
-  margin: 10px;
-}
-
-.movie-card p {
-  margin: 0 10px 10px;
-  color: gray;
+  border-radius: 10px;
 }
 
 /* MODAL */
@@ -90,6 +82,9 @@ main {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden {
@@ -97,11 +92,22 @@ main {
 }
 
 .modal-content {
-  background: white;
+  background: var(--card);
   padding: 20px;
   width: 50%;
-  margin: 10% auto;
+  max-width: 600px;
   border-radius: 10px;
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#closeModal {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 /* RESPONSIVE */
