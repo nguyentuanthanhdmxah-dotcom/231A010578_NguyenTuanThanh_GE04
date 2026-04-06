@@ -2,7 +2,6 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Discovery App</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -23,13 +22,14 @@
       margin: 50px auto;
       padding: 20px;
       border-radius: 10px;
-      max-width: 600px;
+      max-width: 800px;
       position: relative;
     }
-    .modal .modal-content img {
-      max-width: 100%;
+    .modal .modal-content iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
       border-radius: 6px;
-      margin-bottom: 10px;
     }
     .modal .modal-content span {
       position: absolute;
@@ -90,47 +90,7 @@
 <div id="projectModal" class="modal">
   <div class="modal-content">
     <span id="closeProjectModal">&times;</span>
-    <div id="projectBody">
-      <!-- Nội dung mota.html paste trực tiếp -->
-      <h1>Mô tả cách làm các bài tập - Movie Discovery App</h1>
-      <p class="info">Họ và tên: Nguyễn Tuấn Thành | Mã SV: 231A010578</p>
-
-      <div class="section">
-        <h2>Bài 1: Giao diện và Bố cục</h2>
-        <ul>
-          <li>Sử dụng CSS Grid để tạo bố cục 2 cột: Sidebar bên trái chứa bộ lọc, main content hiển thị danh sách phim.</li>
-          <li>Thiết kế các thẻ phim (movie card) với poster, tên phim, năm phát hành, hiệu ứng hover phóng to nhẹ và đổ bóng.</li>
-          <li>Tạo nút chuyển đổi Light/Dark Mode, sử dụng CSS Variables để quản lý màu sắc.</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>Bài 2: Xử lý Logic và Tương tác dữ liệu</h2>
-        <ul>
-          <li>Hiển thị dữ liệu phim từ mảng `movies` tự động tạo movie card.</li>
-          <li>Tạo bộ lọc thể loại động (checkbox) dựa trên dữ liệu phim.</li>
-          <li>Thêm ô tìm kiếm để lọc phim theo tên, kết hợp bộ lọc thể loại.</li>
-          <li>Sử dụng kỹ thuật debounce (400ms) để tối ưu hiệu năng khi tìm kiếm.</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>Bài 3: Trải nghiệm người dùng và sáng tạo</h2>
-        <ul>
-          <li>Tạo modal hiển thị chi tiết phim khi nhấn vào movie card.</li>
-          <li>Hoàn thiện Light/Dark Mode với lưu trạng thái localStorage.</li>
-          <li>Bổ sung link bài tập 34: <a href="231A010578_NguyenTuanThanh_bt34.html">Xem bài tập 34</a></li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>Bài 4: Tối ưu và Triển khai</h2>
-        <ul>
-          <li>Nén hình ảnh bằng TinyPNG trước khi đưa vào thư mục images/.</li>
-          <li>Triển khai website lên Netlify/Vercel.</li>
-        </ul>
-      </div>
-    </div>
+    <iframe src="mota.html"></iframe>
   </div>
 </div>
 
@@ -144,23 +104,27 @@
   showProjectBtn.onclick = () => {
     projectModal.style.display = "block";
   };
+
   closeProjectModal.onclick = () => {
     projectModal.style.display = "none";
   };
 
-  // Modal phim
+  // Modal phim (đã có trong app.js)
   const modal = document.getElementById("modal");
+  const modalBody = document.getElementById("modalBody");
   const closeModal = document.getElementById("closeModal");
+
   closeModal.onclick = () => {
-    modal.style.display = "none";
+    modal.classList.add("hidden");
   };
 
-  // Dark mode toggle
+  // Dark mode
   const toggleBtn = document.getElementById("toggleTheme");
   toggleBtn.onclick = () => {
     document.body.classList.toggle("dark-mode");
     localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
   };
+
   if(localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
   }
