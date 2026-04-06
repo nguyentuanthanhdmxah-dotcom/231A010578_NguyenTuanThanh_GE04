@@ -104,17 +104,6 @@ main {
   border-radius: 10px;
 }
 
-/* iframe + image */
-iframe {
-  border-radius: 10px;
-  border: none;
-  margin-top: 10px;
-}
-
-img {
-  border-radius: 10px;
-}
-
 /* RESPONSIVE */
 @media(max-width:768px){
   .container {
