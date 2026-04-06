@@ -3,7 +3,7 @@ const movies = [
     title: "Titanic",
     year: 1997,
     genre: ["Romance", "Drama"],
-    poster: "images/titanic.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
     description: "Phim tình cảm nổi tiếng",
     director: "James Cameron"
   },
@@ -11,7 +11,7 @@ const movies = [
     title: "The Avengers",
     year: 2012,
     genre: ["Action", "Sci-Fi"],
-    poster: "images/avengers.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
     description: "Siêu anh hùng Marvel",
     director: "Joss Whedon"
   },
@@ -19,7 +19,7 @@ const movies = [
     title: "Inception",
     year: 2010,
     genre: ["Sci-Fi", "Action"],
-    poster: "images/inception.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
     description: "Giấc mơ trong giấc mơ",
     director: "Christopher Nolan"
   },
@@ -27,7 +27,7 @@ const movies = [
     title: "Parasite",
     year: 2019,
     genre: ["Drama"],
-    poster: "images/parasite.jpg",
+    poster: "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
     description: "Phim đoạt Oscar",
     director: "Bong Joon-ho"
   }
@@ -37,7 +37,6 @@ const movieList = document.getElementById("movieList");
 const genreList = document.getElementById("genreList");
 const searchInput = document.getElementById("searchInput");
 
-// HIỂN THỊ PHIM
 function renderMovies(data) {
   movieList.innerHTML = "";
 
@@ -57,12 +56,10 @@ function renderMovies(data) {
     `;
 
     card.onclick = () => showModal(movie);
-
     movieList.appendChild(card);
   });
 }
 
-// TẠO THỂ LOẠI
 function renderGenres() {
   const genres = [...new Set(movies.flatMap(m => m.genre))];
 
@@ -75,7 +72,6 @@ function renderGenres() {
   });
 }
 
-// FILTER + SEARCH
 function filterMovies() {
   const keyword = searchInput.value.toLowerCase();
 
@@ -95,7 +91,7 @@ function filterMovies() {
   renderMovies(result);
 }
 
-// DEBOUNCE
+// debounce
 function debounce(fn, delay) {
   let timeout;
   return function () {
@@ -107,7 +103,7 @@ function debounce(fn, delay) {
 searchInput.addEventListener("input", debounce(filterMovies, 400));
 document.addEventListener("change", filterMovies);
 
-// MODAL
+// modal
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 
@@ -126,7 +122,7 @@ document.getElementById("closeModal").onclick = () => {
   modal.classList.add("hidden");
 };
 
-// DARK MODE
+// dark mode
 const toggleBtn = document.getElementById("toggleTheme");
 
 toggleBtn.onclick = () => {
@@ -141,6 +137,6 @@ if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
 
-// INIT
+// init
 renderGenres();
 renderMovies(movies);
