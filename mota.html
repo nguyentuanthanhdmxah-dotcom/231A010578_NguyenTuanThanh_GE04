@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mô tả cách làm - Movie Discovery App</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .section {
+      margin-bottom: 30px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    .info {
+      margin-top: 5px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mô tả cách làm các bài tập - Movie Discovery App</h1>
+  <p class="info">Họ và tên: Nguyễn Tuấn Thành | Mã SV: 231A010578</p>
+
+  <div class="section">
+    <h2>Bài 1: Giao diện và Bố cục</h2>
+    <p>Trong phần này, tôi đã thực hiện:</p>
+    <ul>
+      <li>Sử dụng CSS Grid để tạo bố cục 2 cột: Sidebar bên trái chứa bộ lọc, main content hiển thị danh sách phim.</li>
+      <li>Thiết kế các thẻ phim (movie card) với poster, tên phim, năm phát hành, hiệu ứng hover phóng to nhẹ và đổ bóng.</li>
+      <li>Tạo nút chuyển đổi Light/Dark Mode, sử dụng CSS Variables để quản lý màu sắc.</li>
+    </ul>
+    <img src="images/bai1_screenshot.png" alt="Screenshot bài 1">
+  </div>
+
+  <div class="section">
+    <h2>Bài 2: Xử lý Logic và Tương tác dữ liệu</h2>
+    <p>Trong phần này, tôi đã thực hiện các chức năng:</p>
+    <ul>
+      <li>Hiển thị dữ liệu phim từ mảng `movies` trong `js/app.js` tự động tạo movie card.</li>
+      <li>Tạo bộ lọc thể loại động (checkbox) dựa trên dữ liệu phim.</li>
+      <li>Thêm ô tìm kiếm để lọc phim theo tên, kết hợp bộ lọc thể loại.</li>
+      <li>Sử dụng kỹ thuật debounce (400ms) để tối ưu hiệu năng khi tìm kiếm.</li>
+    </ul>
+    <img src="images/bai2_screenshot.png" alt="Screenshot bài 2">
+  </div>
+
+  <div class="section">
+    <h2>Bài 3: Trải nghiệm người dùng và sáng tạo</h2>
+    <ul>
+      <li>Tạo modal hiển thị chi tiết phim khi nhấn vào movie card, bao gồm poster lớn, mô tả, đạo diễn, thể loại.</li>
+      <li>Hoàn thiện chức năng Light/Dark Mode với lưu trạng thái vào localStorage.</li>
+      <li>Bổ sung link đến bài tập 34 của tôi: <a href="MSV_ten_bt34.html">Xem bài tập 34</a></li>
+    </ul>
+    <img src="images/bai3_screenshot.png" alt="Screenshot bài 3">
+  </div>
+
+  <div class="section">
+    <h2>Bài 4: Tối ưu và Triển khai</h2>
+    <ul>
+      <li>Nén hình ảnh trong thư mục `images/` bằng TinyPNG để giảm dung lượng.</li>
+      <li>Triển khai website lên Netlify và ghi lại URL trang web.</li>
+      <li>Nén toàn bộ thư mục source code thành `MSSV_HoTen_GE04.zip` để nộp.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
