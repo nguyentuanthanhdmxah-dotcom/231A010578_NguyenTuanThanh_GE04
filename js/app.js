@@ -1,84 +1,85 @@
-// DỮ LIỆU PHIM
+// Dữ liệu phim
 const movies = [
   {
     title: "Titanic",
     year: 1997,
     genre: ["Romance", "Drama"],
-    poster: "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
-    description: "Phim tình cảm nổi tiếng",
-    director: "James Cameron"
+    poster: "images/titanic.jpg",
+    description: "Phim tình cảm nổi tiếng kể về câu chuyện tình yêu trên con tàu Titanic.",
+    director: "James Cameron",
+    cast: ["Leonardo DiCaprio", "Kate Winslet"]
   },
   {
     title: "The Avengers",
     year: 2012,
     genre: ["Action", "Sci-Fi"],
-    poster: "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-    description: "Siêu anh hùng Marvel",
-    director: "Joss Whedon"
+    poster: "images/avengers.jpg",
+    description: "Siêu anh hùng Marvel hợp sức cứu thế giới khỏi kẻ thù hùng mạnh.",
+    director: "Joss Whedon",
+    cast: ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"]
   },
   {
     title: "Inception",
     year: 2010,
-    genre: ["Sci-Fi", "Action"],
-    poster: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
-    description: "Giấc mơ trong giấc mơ",
-    director: "Christopher Nolan"
-  },
-  {
-    title: "Parasite",
-    year: 2019,
-    genre: ["Drama"],
-    poster: "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
-    description: "Phim đoạt Oscar",
-    director: "Bong Joon-ho"
+    genre: ["Action", "Sci-Fi", "Thriller"],
+    poster: "images/inception.jpg",
+    description: "Giấc mơ trong giấc mơ, hành trình chạm đến tiềm thức.",
+    director: "Christopher Nolan",
+    cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt"]
   },
   {
     title: "Interstellar",
     year: 2014,
-    genre: ["Sci-Fi", "Drama"],
-    poster: "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
-    description: "Cuộc hành trình xuyên vũ trụ",
-    director: "Christopher Nolan"
+    genre: ["Adventure", "Drama", "Sci-Fi"],
+    poster: "images/interstellar.jpg",
+    description: "Cuộc hành trình vượt không gian và thời gian để cứu nhân loại.",
+    director: "Christopher Nolan",
+    cast: ["Matthew McConaughey", "Anne Hathaway"]
+  },
+  {
+    title: "Joker",
+    year: 2019,
+    genre: ["Drama", "Crime", "Thriller"],
+    poster: "images/joker.jpg",
+    description: "Câu chuyện đen tối về nguồn gốc nhân vật Joker.",
+    director: "Todd Phillips",
+    cast: ["Joaquin Phoenix"]
   },
   {
     title: "Spider-Man: No Way Home",
     year: 2021,
     genre: ["Action", "Adventure", "Sci-Fi"],
-    poster: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-    description: "Siêu anh hùng người nhện trở lại",
-    director: "Jon Watts"
+    poster: "images/spiderman.jpg",
+    description: "Cuộc phiêu lưu mới của Người Nhện xuyên đa vũ trụ.",
+    director: "Jon Watts",
+    cast: ["Tom Holland", "Zendaya"]
   },
   {
     title: "The Dark Knight",
     year: 2008,
     genre: ["Action", "Crime", "Drama"],
-    poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-    description: "Batman đối đầu Joker",
-    director: "Christopher Nolan"
-  },
-  {
-    title: "Joker",
-    year: 2019,
-    genre: ["Crime", "Drama", "Thriller"],
-    poster: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-    description: "Nguồn gốc Joker",
-    director: "Todd Phillips"
+    poster: "images/darkknight.jpg",
+    description: "Batman đối đầu với Joker trong cuộc chiến giành Gotham.",
+    director: "Christopher Nolan",
+    cast: ["Christian Bale", "Heath Ledger"]
   },
   {
     title: "Avengers: Endgame",
     year: 2019,
     genre: ["Action", "Adventure", "Sci-Fi"],
-    poster: "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
-    description: "Cuộc chiến cuối cùng của Avengers",
-    director: "Anthony Russo, Joe Russo"
+    poster: "images/endgame.jpg",
+    description: "Cuộc chiến cuối cùng của các siêu anh hùng Avengers.",
+    director: "Anthony Russo, Joe Russo",
+    cast: ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"]
   },
   {
-    title: "Frozen II",
-    year: 2019,
-    genre: ["Animation", "Adventure", "Comedy"],
-    poster: "https://image.tmdb.org/t/p/w500/pjeMs3yqRmFL3giJy4PMXWZTTPa.jpg",
-    description: "Cuộc phiêu lưu của Elsa và Anna",
-    director: "Chris Buck, Jennifer Lee"
+    title: "Jumanji: Welcome to the Jungle",
+    year: 2017,
+    genre: ["Adventure", "Comedy", "Fantasy"],
+    poster: "images/jumanji.jpg",
+    description: "Nhóm bạn bị cuốn vào trò chơi Jumanji đầy bí ẩn.",
+    director: "Jake Kasdan",
+    cast: ["Dwayne Johnson", "Kevin Hart"]
   }
 ];
 
@@ -87,12 +88,12 @@ const movieList = document.getElementById("movieList");
 const genreList = document.getElementById("genreList");
 const searchInput = document.getElementById("searchInput");
 
-// RENDER MOVIES
+// HIỂN THỊ PHIM
 function renderMovies(data) {
   movieList.innerHTML = "";
 
-  if (data.length === 0) {
-    movieList.innerHTML = "<p>Không tìm thấy phim</p>";
+  if(data.length === 0){
+    movieList.innerHTML = "<p>Không tìm thấy phim phù hợp.</p>";
     return;
   }
 
@@ -101,43 +102,46 @@ function renderMovies(data) {
     card.className = "movie-card";
 
     card.innerHTML = `
-      <img src="${movie.poster}" alt="${movie.title}">
+      <img src="${movie.poster}" alt="Poster phim ${movie.title}">
       <h4>${movie.title}</h4>
       <p>${movie.year}</p>
     `;
 
     card.onclick = () => showModal(movie);
+
     movieList.appendChild(card);
   });
 }
 
-// RENDER GENRES
+// TỰ ĐỘNG LẤY THỂ LOẠI
 function renderGenres() {
   const genres = [...new Set(movies.flatMap(m => m.genre))];
+  genreList.innerHTML = "";
 
   genres.forEach(g => {
-    const div = document.createElement("div");
-    div.innerHTML = `<input type="checkbox" value="${g}"> ${g}`;
-    genreList.appendChild(div);
+    const label = document.createElement("label");
+    label.innerHTML = `
+      <input type="checkbox" value="${g}"> ${g}
+    `;
+    genreList.appendChild(label);
   });
 }
 
-// FILTER + SEARCH
+// LỌC VÀ TÌM KIẾM PHIM
 function filterMovies() {
   const keyword = searchInput.value.toLowerCase();
-  const checked = [...document.querySelectorAll("#genreList input:checked")]
-    .map(cb => cb.value);
+  const checkedGenres = [...document.querySelectorAll("#genreList input[type=checkbox]:checked")].map(cb => cb.value);
 
-  const result = movies.filter(m => {
-    const matchName = m.title.toLowerCase().includes(keyword);
-    const matchGenre = checked.length === 0 || checked.some(g => m.genre.includes(g));
+  const filtered = movies.filter(movie => {
+    const matchName = movie.title.toLowerCase().includes(keyword);
+    const matchGenre = checkedGenres.length === 0 || checkedGenres.some(g => movie.genre.includes(g));
     return matchName && matchGenre;
   });
 
-  renderMovies(result);
+  renderMovies(filtered);
 }
 
-// DEBOUNCE
+// DEBOUNCE (tránh gọi filter quá nhanh)
 function debounce(fn, delay) {
   let timeout;
   return function () {
@@ -146,45 +150,61 @@ function debounce(fn, delay) {
   };
 }
 
-searchInput.addEventListener("input", debounce(filterMovies, 400));
-document.addEventListener("change", filterMovies);
-
 // MODAL
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
+const closeModalBtn = document.getElementById("closeModal");
 
 function showModal(movie) {
   modal.classList.remove("hidden");
+  modal.setAttribute('aria-hidden', 'false');
 
   modalBody.innerHTML = `
-    <h2>${movie.title}</h2>
-    <img src="${movie.poster}" alt="${movie.title}">
-    <p>${movie.description}</p>
-    <p><b>Đạo diễn:</b> ${movie.director}</p>
-    <p><b>Năm phát hành:</b> ${movie.year}</p>
-    <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
+    <h2 id="modalTitle">${movie.title}</h2>
+    <img src="${movie.poster}" alt="Poster phim ${movie.title}">
+    <p><strong>Mô tả:</strong> ${movie.description}</p>
+    <p><strong>Đạo diễn:</strong> ${movie.director}</p>
+    <p><strong>Diễn viên:</strong> ${movie.cast ? movie.cast.join(", ") : "Chưa cập nhật"}</p>
+    <p><strong>Thể loại:</strong> ${movie.genre.join(", ")}</p>
+    <p><strong>Năm phát hành:</strong> ${movie.year}</p>
   `;
 }
 
-document.getElementById("closeModal").onclick = () => {
+// Đóng modal
+closeModalBtn.onclick = () => {
   modal.classList.add("hidden");
+  modal.setAttribute('aria-hidden', 'true');
+};
+
+// Đóng modal khi click ra ngoài vùng nội dung
+modal.onclick = (e) => {
+  if (e.target === modal) {
+    modal.classList.add("hidden");
+    modal.setAttribute('aria-hidden', 'true');
+  }
 };
 
 // DARK MODE
 const toggleBtn = document.getElementById("toggleTheme");
 
 toggleBtn.onclick = () => {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("theme",
-    document.body.classList.contains("dark-mode") ? "dark" : "light"
-  );
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 };
 
-// LOAD THEME
+// LOAD THEME LƯU TRỮ
 if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark-mode");
+  document.body.classList.add("dark");
+  toggleBtn.textContent = "☀️";
+} else {
+  toggleBtn.textContent = "🌙";
 }
 
-// INIT
+// EVENT LISTENERS
+searchInput.addEventListener("input", debounce(filterMovies, 400));
+genreList.addEventListener("change", filterMovies);
+
+// KHỞI TẠO
 renderGenres();
 renderMovies(movies);
