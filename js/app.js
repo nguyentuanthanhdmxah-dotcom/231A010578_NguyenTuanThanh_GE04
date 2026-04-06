@@ -39,6 +39,7 @@ const genreList = document.getElementById("genreList");
 const searchInput = document.getElementById("searchInput");
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
+const closeModal = document.getElementById("closeModal");
 const toggleBtn = document.getElementById("toggleTheme");
 
 // Modal dự án
@@ -66,7 +67,7 @@ function renderMovies(data) {
       <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
     `;
 
-    card.onclick = () => showModal(movie);
+    card.addEventListener("click", () => showMovieModal(movie));
     movieList.appendChild(card);
   });
 }
@@ -104,45 +105,47 @@ function debounce(fn, delay) {
   };
 }
 
-// Event listeners
-searchInput.addEventListener("input", debounce(filterMovies, 400));
-document.addEventListener("change", filterMovies);
-
 // Show movie modal
-function showModal(movie) {
-  modal.classList.remove("hidden");
+function showMovieModal(movie) {
   modalBody.innerHTML = `
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <h2>${movie.title} (${movie.year})</h2>
-      <img src="${movie.poster}" width="250" style="display:block; margin-bottom:15px;">
-      <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
-      <p><b>Mô tả:</b> ${movie.description}</p>
-      <p><b>Đạo diễn:</b> ${movie.director}</p>
-    </div>
+    <h2>${movie.title} (${movie.year})</h2>
+    <img src="${movie.poster}" width="250" style="display:block; margin-bottom:15px;">
+    <p><b>Thể loại:</b> ${movie.genre.join(", ")}</p>
+    <p><b>Mô tả:</b> ${movie.description}</p>
+    <p><b>Đạo diễn:</b> ${movie.director}</p>
   `;
-
-  document.getElementById("closeModal").onclick = () => {
-    modal.classList.add("hidden");
-  };
+  modal.classList.remove("hidden");
 }
 
+// Close movie modal
+closeModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
 // Show project modal
-showProjectBtn.onclick = () => {
+showProjectBtn.addEventListener("click", () => {
   projectModal.style.display = "block";
-};
-closeProjectModal.onclick = () => {
+});
+
+// Close project modal
+closeProjectModal.addEventListener("click", () => {
   projectModal.style.display = "none";
-};
+});
 
 // Dark/Light mode
-toggleBtn.onclick = () => {
+toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
   localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-};
+});
+
+// Apply saved theme
 if(localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
+
+// Event listeners for filtering
+searchInput.addEventListener("input", debounce(filterMovies, 400));
+document.addEventListener("change", filterMovies);
 
 // Initialize
 renderGenres();
