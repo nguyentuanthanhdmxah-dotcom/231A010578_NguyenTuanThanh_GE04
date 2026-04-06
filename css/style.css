@@ -1,13 +1,13 @@
 :root {
-  --bg: #ffffff;
-  --text: #000;
-  --card: #f4f4f4;
+  --bg: #f5f5f5;
+  --text: #111;
+  --card: #ffffff;
 }
 
-body.dark {
-  --bg: #1e1e1e;
-  --text: #fff;
-  --card: #2c2c2c;
+body.dark-mode {
+  --bg: #121212;
+  --text: #ffffff;
+  --card: #1e1e1e;
 }
 
 body {
@@ -21,8 +21,9 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  background: #444;
+  align-items: center;
+  padding: 15px 20px;
+  background: #222;
   color: white;
 }
 
@@ -44,7 +45,7 @@ aside {
   background: #ddd;
 }
 
-/* MAIN GRID */
+/* MAIN */
 main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -55,20 +56,30 @@ main {
 /* CARD */
 .movie-card {
   background: var(--card);
-  padding: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
+  overflow: hidden;
   transition: 0.3s;
   cursor: pointer;
 }
 
 .movie-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .movie-card img {
   width: 100%;
-  border-radius: 10px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie-card h4 {
+  margin: 10px;
+}
+
+.movie-card p {
+  margin: 0 10px 10px;
+  color: gray;
 }
 
 /* MODAL */
@@ -90,14 +101,10 @@ main {
   padding: 20px;
   width: 50%;
   margin: 10% auto;
+  border-radius: 10px;
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
+/* iframe + image */
 iframe {
   border-radius: 10px;
   border: none;
@@ -106,5 +113,11 @@ iframe {
 
 img {
   border-radius: 10px;
-  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .container {
+    grid-template-columns: 1fr;
+  }
 }
